@@ -1,29 +1,39 @@
 package Stack;
 
+import java.util.Scanner;
 import java.util.Stack;
 
 public class LargestRectangleInHistogram {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Scanner scn = new Scanner(System.in);
 
+		int h = scn.nextInt();
+		int height[] = new int[h];
+		for (int i = 0; i < h; i++) {
+			height[i] = scn.nextInt();
+		}
+		System.out.println(maxRectArea(height));
 	}
 
-	public static void func(int[] arr) {
+	public static int maxRectArea(int[] arr) {
 
 		int[] left = new int[arr.length];
 		int[] right = new int[arr.length];
 
 		Stack<Integer> stack = new Stack<Integer>();
 
-		left[0] = 0;
-
-		stack.push(0);
-
-		for (int i = 0; i < arr.length; i++) {
-
-		}
-
+		/*
+		 * left[0] = 0;
+		 * 
+		 * stack.push(0);
+		 * 
+		 * for (int i = 0; i < arr.length; i++) {
+		 * 
+		 * 
+		 * 
+		 * }
+		 */
 		stack = new Stack<Integer>();
 		right[arr.length - 1] = arr.length - 1;
 
@@ -42,6 +52,11 @@ public class LargestRectangleInHistogram {
 			}
 			stack.push(i);
 		}
+
+		for (int x : right) {
+			System.out.print(x + " ");
+		}
+		return 0;
 
 	}
 }
