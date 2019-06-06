@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class VnC {
 
+//	6
+//	a e g h i m
 	public static void main(String args[]) {
 		Scanner sc = new Scanner(System.in);
 
@@ -24,9 +26,9 @@ public class VnC {
 	// ---------------------------------------------------------------
 	// This is a functional problem. Only this function has to be written.
 	// This function should return the head of node after sorting.
+
 	public static Node arcv(Node head) {
 		Node temp = head;
-
 		Node vhead = new Node();
 		Node vtail = new Node();
 		int vsize = 0;
@@ -38,47 +40,73 @@ public class VnC {
 		while (temp != null) {
 			if (temp.data == 'a' || temp.data == 'e' || temp.data == 'i' || temp.data == 'o' || temp.data == 'u') {
 
-				vhead = addlast(vhead, vtail, temp.data, vsize);
+				if (vsize == 0) {
+
+					Node node = new Node();
+					node.data = temp.data;
+					vhead = node;
+					vtail = vhead;
+					vtail.next = null;
+					vsize++;
+
+				} else {
+					Node node = new Node();
+					node.data = temp.data;
+					vtail.next = node;
+					vtail = node;
+					vsize++;
+
+				}
 
 			} else {
+				if (csize == 0) {
 
-				chead = addlast(chead, ctail, temp.data, csize);
+					Node node = new Node();
+					node.data = temp.data;
+					chead = node;
+					ctail = chead;
+					ctail.next = null;
+					csize++;
 
+				} else {
+					Node node = new Node();
+					node.data = temp.data;
+					ctail.next = node;
+					ctail = node;
+					csize++;
+
+				}
 			}
-
 			temp = temp.next;
 		}
 
-		head = vhead;
+		if (vsize == 0) {
 
-		vtail.next = chead;
+			head = chead;
+			tail = ctail;
+			size = csize;
+			tail.next = null;
 
-		tail = ctail;
-		return head;
-	}
-	// ------------------------------------------------------------------
+		} else if (csize == 0) {
 
-	private static Node addlast(Node xhead, Node xtail, char data, int size) {
-		if (size == 0) {
-			Node node = new Node();
-			node.data = data;
-			xhead = xtail = node;
-			size++;
+			head = vhead;
+			tail = vtail;
+			size = vsize;
+			tail.next = null;
 
-			return xhead;
 		} else {
-			Node node = new Node();
-			node.data = data;
-
-			xtail = node;
-			size++;
-
-			return xhead;
+			head = vhead;
+			vtail.next = chead;
+			tail = ctail;
+			tail.next = null;
+			size = csize + vsize;
 
 		}
+		return head;
 
 	}
 
+	// ------------------------------------------------------------------
 	private static class Node {
 		char data;
 		Node next;
