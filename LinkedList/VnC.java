@@ -27,12 +27,12 @@ public class VnC {
 	public static Node arcv(Node head) {
 		Node temp = head;
 
-		Node vhead = new Node('$', null);
-		Node vtail = new Node('$', null);
+		Node vhead = new Node();
+		Node vtail = new Node();
 		int vsize = 0;
 
-		Node chead = new Node('$', null);
-		Node ctail = new Node('$', null);
+		Node chead = new Node();
+		Node ctail = new Node();
 		int csize = 0;
 
 		while (temp != null) {
@@ -68,7 +68,7 @@ public class VnC {
 			return xhead;
 		} else {
 			Node node = new Node();
-			node.data = data;F
+			node.data = data;
 
 			xtail = node;
 			size++;
