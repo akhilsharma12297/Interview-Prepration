@@ -1,44 +1,31 @@
 package LinkedList;
 
-import java.util.*;
+import java.util.Scanner;
 
-public class ReverseMtoN {
+public class SplitLinkedListKParts {
 
 	// -----------------------------------------------------
 	// This is a functional problem. Only this function has to be written.
-	// This function takes as input the head of the linked list, m and n.
-	// It should return the head of the modified list.
-
-	public static Node reverseBetween(Node head, int m, int n) {
+	// This function takes as input the head of the linked list.
+	// It should return the head of the modified linked list.
+	public static Node oddEvenList(Node head) {
 		if (head == null) {
 			return null;
 		}
-		Node cur = head;
+		Node odd = head;
+		Node even = head.next;
 
-		Node prev = null;
-		while (m > 1) {
-			prev = cur;
-			cur = cur.next;
-			m--;
-			n--;
-		}
-		Node con = prev;
-		Node join = cur;
-		Node temp;
-		while (n > 0) {
-			temp = cur.next;
-			cur.next = prev;
-			prev = cur;
-			cur = temp;
-			n--;
+		Node evenhead = even;
+		while (even != null && even.next != null) {
+
+			odd.next = even.next;
+			odd = odd.next;
+			even.next = odd.next;
+
+			even = even.next;
 		}
 
-		if (con != null) {
-			con.next = prev;
-		} else {
-			head = prev;
-		}
-		join.next = cur;
+		odd.next = evenhead;
 		return head;
 	}
 
@@ -55,9 +42,7 @@ public class ReverseMtoN {
 			head1 = insert(head1, a);
 		}
 
-		int m = sc.nextInt();
-		int n = sc.nextInt();
-		head1 = reverseBetween(head1, m, n);
+		head1 = oddEvenList(head1);
 		display(head1);
 
 	}
