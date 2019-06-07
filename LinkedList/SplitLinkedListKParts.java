@@ -9,30 +9,41 @@ public class SplitLinkedListKParts {
 	// This function takes as input the head of the linked list.
 	// It should return the head of the modified linked list.
 	public static Node[] splitListToParts(Node head, int k) {
-		Node[] arr = new Node[k];
-		Node forsize = head;
-		int count = 0;
-		while (forsize != null) {
-			forsize = forsize.next;
-			count++;
+
+		Node sizer = head;
+
+		int size = 0;
+		while (sizer != null) {
+			size++;
+			sizer = sizer.next;
 		}
-		int n = count;
-		int width = n / k;
-		int rem = n % k;// parts having extra
-		Node cur = head;
+
+		int width = size / k;
+
+		int extra = size % k;
+
+		Node[] arr = new Node[k];
+
+		Node curr = head;
+
 		for (int i = 0; i < k; i++) {
-			Node lt = new Node(0);
-			Node vrl = lt;
-			for (int j = 0; j < width + (i < rem ? 1 : 0); j++) {
-				vrl.next = new Node(cur.data);
-				vrl = vrl.next;
-				if (cur != null) {
-					cur = cur.next;
+
+			Node ans = new Node(0);
+			Node work = ans;
+			for (int j = 0; j < width + (i < extra ? 1 : 0); j++) {
+
+				work.next = new Node(curr.data);
+				work = work.next;
+
+				if (curr != null) {
+					curr = curr.next;
 				}
-				arr[i] = lt.next;
+
+				arr[i] = ans.next;
 			}
 
 		}
+
 		return arr;
 	}
 
