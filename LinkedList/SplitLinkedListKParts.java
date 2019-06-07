@@ -8,25 +8,32 @@ public class SplitLinkedListKParts {
 	// This is a functional problem. Only this function has to be written.
 	// This function takes as input the head of the linked list.
 	// It should return the head of the modified linked list.
-	public static Node oddEvenList(Node head) {
-		if (head == null) {
-			return null;
+	public static Node[] splitListToParts(Node head, int k) {
+		Node[] arr = new Node[k];
+		Node forsize = head;
+		int count = 0;
+		while (forsize != null) {
+			forsize = forsize.next;
+			count++;
 		}
-		Node odd = head;
-		Node even = head.next;
+		int n = count;
+		int width = n / k;
+		int rem = n % k;// parts having extra
+		Node cur = head;
+		for (int i = 0; i < k; i++) {
+			Node lt = new Node(0);
+			Node vrl = lt;
+			for (int j = 0; j < width + (i < rem ? 1 : 0); j++) {
+				vrl.next = new Node(cur.data);
+				vrl = vrl.next;
+				if (cur != null) {
+					cur = cur.next;
+				}
+				arr[i] = lt.next;
+			}
 
-		Node evenhead = even;
-		while (even != null && even.next != null) {
-
-			odd.next = even.next;
-			odd = odd.next;
-			even.next = odd.next;
-
-			even = even.next;
 		}
-
-		odd.next = evenhead;
-		return head;
+		return arr;
 	}
 
 	// -----------------------------------------------------
@@ -42,8 +49,13 @@ public class SplitLinkedListKParts {
 			head1 = insert(head1, a);
 		}
 
-		head1 = oddEvenList(head1);
-		display(head1);
+		int k = sc.nextInt();
+
+		Node[] arr = splitListToParts(head1, k);
+
+		for (int i = 0; i < arr.length; i++) {
+			display(arr[i]);
+		}
 
 	}
 
@@ -90,6 +102,7 @@ public class SplitLinkedListKParts {
 		for (Node node = head; node != null; node = node.next) {
 			System.out.print(node.data + " ");
 		}
+		System.out.println();
 	}
 
 }
