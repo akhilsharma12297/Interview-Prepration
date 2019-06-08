@@ -2,57 +2,34 @@ package LinkedList;
 
 import java.util.Scanner;
 
-public class splitX {
+public class RemoveDuplicateSorted {
 
 	// -----------------------------------------------------
-	// This is a functional problem. Only this function has to be written.
-	// This takes as input the head of the linked list and x.
-	// It should return the head of the modified list.
-	public static Node partition(Node n, int x) {
-		Node lefthead = null;
-		Node righthead = null;
-		
-		Node right = null;
-		Node left = null;
-		
-		Node head = n;
-		
-		while (head != null) {
-		
-			if (head.data < x) {
-			
-				if (lefthead == null) {
-					lefthead = left = head;
-					
-				} else {
-					
-					left.next = head;
-					left = head;
+	public static Node deleteDuplicates(Node head) {
+		{
+			/* Another reference to head */
+			Node curr = head;
 
+			/* Traverse list till the last node */
+			while (curr != null) {
+				Node temp = curr;
+				/*
+				 * Compare current node with the next node and keep on deleting them until it
+				 * matches the current node data
+				 */
+				while (temp != null && temp.data == curr.data) {
+					temp = temp.next;
 				}
-			} else {
-				if (righthead == null) {
-					righthead = right = head;
-				} else {
-					right.next = head;
-					right = head;
-				}
-
+				/*
+				 * Set current node next to the next different element denoted by temp
+				 */
+				curr.next = temp;
+				curr = curr.next;
 			}
-			head = head.next;
 
-		}
-		if (right != null) {
-			right.next = null;
-		}
-		if (left != null) {
-			left.next = righthead;
-			return lefthead;
-		} else {
-			return righthead;
+			return head;
 		}
 	}
-	// -----------------------------------------------------
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -65,9 +42,7 @@ public class splitX {
 			head1 = insert(head1, a);
 		}
 
-		int x = sc.nextInt();
-
-		head1 = partition(head1, x);
+		head1 = deleteDuplicates(head1);
 		display(head1);
 
 	}
@@ -115,6 +90,7 @@ public class splitX {
 		for (Node node = head; node != null; node = node.next) {
 			System.out.print(node.data + " ");
 		}
+		System.out.println();
 	}
 
 }
