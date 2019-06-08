@@ -2,49 +2,83 @@ package LinkedList;
 
 import java.util.Scanner;
 
-public class OddEvenIDX {
+public class isListPalindrome {
+
+	static Node left;
 
 	// -----------------------------------------------------
 	// This is a functional problem. Only this function has to be written.
 	// This function takes as input the head of the linked list.
-	// It should return the head of the modified linked list.
-	public static Node oddEvenList(Node head) {
+	// It should return true if list is palindrome, else return false.
 
-		Node oddhead = head;
-		Node oddtail = head;
+	public static boolean isPalindrome(Node head) {
+		Node slow = head;
 
-		Node evenhead = head.next;
-		Node eventail = head.next;
+		Node fast = slow.next;
 
-		while (eventail != null && eventail.next != null) {
-			oddtail.next = oddtail.next.next;
-
-			oddtail = oddtail.next;
-
-			eventail.next = eventail.next.next;
-
-			eventail = eventail.next;
+		while (fast != null && fast.next.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
 		}
 
-		oddtail.next = evenhead;
+		Node head1 = head;
 
-		return oddhead;
+		Node head2 = slow.next;
+
+		slow.next = null;
+
+		head2 = reverseList(head2);
+
+		while (head1 != null && head2 != null) {
+			if (head1.data != head2.data) {
+				return false;
+			}
+			head1 = head1.next;
+			head2 = head2.next;
+		}
+
+		return true;
 	}
+
 	// -----------------------------------------------------
+
+	private static Node reverseList(Node node) {
+
+		Node prev = null;
+		Node curr = node;
+		Node next = null;
+
+		while (curr != null) {
+
+			next = curr.next;
+
+			curr.next = prev;
+			prev = curr;
+			curr = next;
+
+		}
+
+		node = prev;
+		return node;
+
+	}
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int n1 = sc.nextInt();
 		int a1 = sc.nextInt();
-		head1 = insert(head1, a1);
+		head = insert(head, a1);
 
 		for (int i = 1; i < n1; i++) {
 			int a = sc.nextInt();
-			head1 = insert(head1, a);
+			head = insert(head, a);
 		}
 
-		head1 = oddEvenList(head1);
-		display(head1);
+		if (isPalindrome(head)) {
+			System.out.println("1");
+		} else {
+			System.out.println("0");
+		}
 
 	}
 
@@ -60,7 +94,7 @@ public class OddEvenIDX {
 
 	}
 
-	static Node head1;
+	static Node head;
 
 	static Node head2;
 

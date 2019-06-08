@@ -2,49 +2,93 @@ package LinkedList;
 
 import java.util.Scanner;
 
-public class OddEvenIDX {
+public class FoldTheListIterative {
 
 	// -----------------------------------------------------
 	// This is a functional problem. Only this function has to be written.
 	// This function takes as input the head of the linked list.
-	// It should return the head of the modified linked list.
-	public static Node oddEvenList(Node head) {
+	// It should return the head of the rearranged linked list.
 
-		Node oddhead = head;
-		Node oddtail = head;
+	public static Node rearrange(Node head) {
+		// write your code here
 
-		Node evenhead = head.next;
-		Node eventail = head.next;
+		Node slow = head;
 
-		while (eventail != null && eventail.next != null) {
-			oddtail.next = oddtail.next.next;
+		Node fast = head.next;
 
-			oddtail = oddtail.next;
-
-			eventail.next = eventail.next.next;
-
-			eventail = eventail.next;
+		while (fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
 		}
 
-		oddtail.next = evenhead;
+		Node head1 = head;
 
-		return oddhead;
+		Node head2 = slow.next;
+
+		slow.next = null;
+
+		head2 = reverseList(head2);
+
+		Node res = new Node(0);
+
+		Node ans = res;
+
+		while (head1 != null || head2 != null) {
+
+			if (head1 != null) {
+				ans.next = head1;
+				ans = ans.next;
+				head1 = head1.next;
+			}
+
+			if (head2 != null) {
+				ans.next = head2;
+				ans = ans.next;
+				head2 = head2.next;
+			}
+
+		}
+
+		return res.next;
 	}
+
 	// -----------------------------------------------------
+
+	private static Node reverseList(Node node) {
+
+		Node prev = null;
+		Node curr = node;
+		Node next;
+
+		while (curr != null) {
+			next = curr.next;
+
+			curr.next = prev;
+
+			prev = curr;
+			curr = next;
+
+		}
+
+		node = prev;
+
+		return node;
+
+	}
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int n1 = sc.nextInt();
+		int n = sc.nextInt();
 		int a1 = sc.nextInt();
-		head1 = insert(head1, a1);
+		head = insert(head, a1);
 
-		for (int i = 1; i < n1; i++) {
+		for (int i = 1; i < n; i++) {
 			int a = sc.nextInt();
-			head1 = insert(head1, a);
+			head = insert(head, a);
 		}
 
-		head1 = oddEvenList(head1);
-		display(head1);
+		head = rearrange(head);
+		display(head);
 
 	}
 
@@ -60,7 +104,7 @@ public class OddEvenIDX {
 
 	}
 
-	static Node head1;
+	static Node head;
 
 	static Node head2;
 
