@@ -10,41 +10,44 @@ public class SplitCircular {
 	// It should return an array of heads of the split lists.
 	// (Head of first list at 0th index and second at index 1).
 	public static Node[] splitList(Node head) {
-		Node tail = head.next;
 
-		while (tail.next != head) {
-			tail = tail.next;
+		Node[] arr = new Node[2];
+
+		Node head1 = null;
+		Node head2 = null;
+
+		if (head.next == head) {
+			head1 = head;
+			head2 = null;
+			arr[0] = head1;
+			arr[1] = head2;
+			return arr;
+
 		}
-
-		Node prev = null;
 		Node slow = head;
-		Node fast = head.next;
-
-		while (fast.next != null && fast.next.next != null || fast != tail || fast != head
-				|| fast.next != tail && fast.next.next != tail) {
-			prev = slow;
-			slow = slow.next;
+		Node fast = head;
+		while (fast.next != head && fast.next.next != head) {
 			fast = fast.next.next;
+			slow = slow.next;
+		}
+		if (fast.next.next == head) {// in even list
+			fast = fast.next;
 		}
 
-		Node head1 = head;
-		Node head2 = slow.next;
-		slow.next = null;
+		head1 = head;
+		if (head.next != null) {
+			head2 = slow.next;
+		}
+		// make second circular
 
-		prev.next = head1;
+		fast.next = slow.next;
+		// make first circular
+		slow.next = head;
+		arr[0] = head1;
+		arr[1] = head2;
+		return arr;
 
-		tail.next = head2;
-
-		Node[] ans = new Node[2];
-
-		ans[0] = head1;
-
-		ans[1] = head2;
-
-		return ans;
-		// write your code here
 	}
-
 	// -----------------------------------------------------
 
 	public static void main(String[] args) {
