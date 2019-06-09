@@ -30,7 +30,7 @@ public class isListPalindrome {
 		head2 = reverseList(head2);
 
 		while (head1 != null && head2 != null) {
-			if (head1.data != head2.data) {
+			if (head1.data != head2.data) { 
 				return false;
 			}
 			head1 = head1.next;
