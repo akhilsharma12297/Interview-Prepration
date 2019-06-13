@@ -15,23 +15,29 @@ public class AddTwoLinkedList {
 		// write your code here.
 		Node head = null;
 		Node prev = null;
+
 		int sum = 0;
 		int carry = 0;
 
 		while (n1 != null || n2 != null) {
 			int ld, rd = 0;
+
 			if (n1 != null) {
 				ld = n1.data;
 			} else {
 				ld = 0;
 			}
+
 			if (n2 != null) {
 				rd = n2.data;
 			} else {
 				rd = 0;
 			}
+
 			sum = ld + rd + carry;
+
 			carry = sum / 10;
+
 			sum = sum % 10;
 
 			if (head == null) {
