@@ -95,11 +95,6 @@ public class MergeZigZag {
 		return head;
 	}
 
-	/*
-	 * Input Parameters: head: head of the linked list in which is to be displayed.
-	 * 
-	 * Return Value: null
-	 */
 	public static void display(Node head) {
 		for (Node node = head; node != null; node = node.next) {
 			System.out.print(node.data + " ");

@@ -7,16 +7,18 @@ public class SortedStack {
 
 	public static Stack<Integer> sortstack(Stack<Integer> input) {
 
-		Stack<Integer> stack = new Stack<>();
 		Stack<Integer> helper = new Stack<>();
 
-		while (!stack.isEmpty()) {
-			if (helper.isEmpty() || helper.peek() < stack.peek()) {
+		while (!input.isEmpty()) {
+			int temp = input.pop();
 
+			if (!helper.isEmpty() && helper.peek() > temp) {
+				input.push(helper.pop());
 			}
+			helper.push(temp);
 		}
 
-		return input;
+		return helper;
 	}
 
 	public static void main(String args[]) {
