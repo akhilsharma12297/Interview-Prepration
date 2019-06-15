@@ -3,7 +3,6 @@ package Stack;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,56 +39,25 @@ public class KillProcess {
 			}
 		}
 
-		Node find = getfind(head, kill);
+		Node find = nodeMap.get(kill);
 
-		killit(head, find);
+		ans.add(find.data);
 
-		myNodes(find);
+		addChild(find);
 
 		return ans;
 	}
 
-	private static void myNodes(Node node) {
+	public static void addChild(Node node) {
 
 		for (Node child : node.list) {
-			ans.add(node.data);
-			myNodes(child);
+			ans.add(child.data);
+			addChild(child);
 		}
-
 	}
 
-	private static void killit(Node node, Node kill) {
-		for (Node child : node.list) {
-
-			if (node.list.contains(kill)) {
-				node.list.remove(kill);
-			} else {
-				killit(child, kill);
-			}
-		}
-
-	}
-
-	private static Node getfind(Node node, int data) {
-
-		if (node.data == data) {
-			return node;
-		}
-
-		for (Node child : node.list) {
-
-			Node ans = getfind(child, data);
-			if (ans != null) {
-				return ans;
-			}
-		}
-
-		return null;
-
-	}
-
-	// Dont make changes here
 	public static void main(String[] args) {
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
 		int k = sc.nextInt();
@@ -102,7 +70,7 @@ public class KillProcess {
 			ppid.add(sc.nextInt());
 		}
 		ArrayList<Integer> res = (ArrayList<Integer>) killProcess(pid, ppid, k);
-//		Collections.sort(res);
-//		System.out.println(res);
+		Collections.sort(res);
+		System.out.println(res);
 	}
 }
