@@ -44,7 +44,7 @@ public class kth_smallest_Prime {
 
 			PrimePair temp = pq.poll();
 
-			if ((temp.n != arr[temp.d - 1])) {
+			if (temp.n != temp.d - 1) {
 				pq.add(new PrimePair(temp.n, temp.d - 1, (float) arr[temp.n] / arr[temp.d - 1]));
 			}
 
