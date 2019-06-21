@@ -30,7 +30,7 @@ public class subArray_range_with_given_sum {
 			}
 
 		}
-		return ctr + 1;
+		return ctr;
 
 	}
 

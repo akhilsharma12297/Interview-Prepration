@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Subarray_with_0_Sum {
 
 	public static void main(String[] args) {
-		
+
 //		6
 //		-4 -1 1 10 -11 2
 		Scanner scn = new Scanner(System.in);
