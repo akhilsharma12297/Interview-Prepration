@@ -3,6 +3,7 @@ package HashMap_Heap;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Scanner;
@@ -24,6 +25,54 @@ public class K_pair_with_smallest_sum {
 		public int compareTo(pair o) {
 			return this.sum - o.sum;
 		}
+	}
+
+	public static List<List<Integer>> kSmallestPairs2(int[] nums1, int[] nums2, int k) {
+
+		if (nums1.length == 0 || nums2.length == 0) {
+			List<List<Integer>> l1 = new ArrayList<>();
+			return l1;
+		}
+
+		PriorityQueue<pair> pq = new PriorityQueue<pair>();
+		HashSet<String> set = new HashSet<String>();
+
+		pair p = new pair(0, 0, nums1[0] + nums2[0]);
+		pq.add(p);
+
+		List<List<Integer>> list = new ArrayList<>();
+		int count = 0;
+
+		while (count < k && pq.size() > 0) {
+			pair temp = pq.remove();
+
+//			if (set.contains(temp.i + " " + temp.j) == true) {
+//				continue;
+//			} else {
+//				set.add(temp.i + " " + temp.j);
+//			}
+			List<Integer> ans = new ArrayList<>();
+			ans.add(nums1[temp.i]);
+			ans.add(nums2[temp.j]);
+
+			list.add(ans);
+
+			if (temp.i < nums1.length - 1) {
+
+				pq.add(new pair(temp.i + 1, temp.j, nums1[temp.i + 1] + nums2[temp.j]));
+
+			}
+
+			if (temp.j < nums2.length - 1) {
+
+				pq.add(new pair(temp.i, temp.j + 1, nums1[temp.i] + nums2[temp.j + 1]));
+
+			}
+			
+			count++;
+		}
+		return list;
+
 	}
 
 	public static List<List<Integer>> kSmallestPairs(int[] nums1, int[] nums2, int k) {
@@ -94,7 +143,7 @@ public class K_pair_with_smallest_sum {
 
 		int K = sc.nextInt();
 
-		List<List<Integer>> result = kSmallestPairs(arr1, arr2, K);
+		List<List<Integer>> result = kSmallestPairs2(arr1, arr2, K);
 		result.sort(new ListComparator());
 
 		display(result);
