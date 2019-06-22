@@ -1,5 +1,6 @@
 package HashMap_Heap;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -11,25 +12,16 @@ public class Find_the_Difference {
 	public static char findTheDifference(String s, String t) {
 		// write your code here.
 
-		HashSet<Character> set = new HashSet<>();
+		char c = 0;
 
 		for (int i = 0; i < s.length(); i++) {
-			char ch = s.charAt(i);
-
-			set.add(ch);
+			c ^= s.charAt(i);
 		}
 
-		for (int i = 0; i < t.length(); i++) {
-			char ch = t.charAt(i);
-			if (set.contains(ch)) {
-				set.remove(ch);
-			} else {
-				set.add(ch);
-			}
+		for (int j = 0; j < s.length(); j++) {
+			c ^= t.charAt(j);
 		}
-
-		// Char[] arr = set.toArray();
-
+		return c;
 	}
 
 	public static void main(String[] args) {
