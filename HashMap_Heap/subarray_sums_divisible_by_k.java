@@ -15,28 +15,18 @@ public class subarray_sums_divisible_by_k {
 
 			masterSum += arr[i];
 
+			int val = 0;
 			if (masterSum < 0) {
-				int val = (masterSum % k) + k;
-
-				if (map.containsKey(val)) {
-					ctr += map.get(val);
-					map.put(val, map.get(val) + 1);
-				} else {
-					map.put(val, 1);
-				}
-
+				val = ((masterSum % k) + k) % k;
 			} else {
-
-				int val = masterSum % k;
-
-				if (map.containsKey(val)) {
-					ctr += map.get(val);
-					map.put(val, map.get(val) + 1);
-				} else {
-					map.put(val, 1);
-				}
+				val = masterSum % k;
 			}
-
+			if (map.containsKey(val)) {
+				ctr += map.get(val);
+				map.put(val, map.get(val) + 1);
+			} else {
+				map.put(val, 1);
+			}
 		}
 
 		return ctr;

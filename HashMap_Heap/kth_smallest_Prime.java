@@ -39,7 +39,7 @@ public class kth_smallest_Prime {
 
 			pq.add(new PrimePair(i, last, (float) arr[i] / arr[last]));
 		}
-
+		k -= 1;
 		while (k-- > 0) {
 
 			PrimePair temp = pq.poll();
