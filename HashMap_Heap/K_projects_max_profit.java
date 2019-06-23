@@ -7,26 +7,21 @@ public class K_projects_max_profit {
 	public static int findMaximizedCapital(int k, int W, int[] Profits, int[] Capital) {
 		// write your code here
 		int captial = 0;
+
 		return captial;
 	}
 
-	public abstract class Pair implements Comparable<Pair> {
-		int p;
-		int c;
+	public class pair implements Comparable<pair> {
+		public int p;
+		public int c;
 
-		Pair(int p, int c) {
+		pair(int p, int c) {
 			this.p = p;
 			this.c = c;
 		}
 
-	}
-
-	public class maxProfit implements Comparable<Pair> {
-
-		@Override
-		public int compareTo(Pair o) {
-			// TODO Auto-generated method stub
-			return 0;
+		public int compareTo(pair o) {
+			return o.c - this.c;
 		}
 
 	}
