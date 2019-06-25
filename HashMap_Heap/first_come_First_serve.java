@@ -4,11 +4,10 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 
-public class First_unique_element {
+public class first_come_First_serve {
 
 	public static void main(String[] args) {
 		Scanner scn = new Scanner(System.in);
-
 		int n = scn.nextInt();
 		int k = scn.nextInt();
 		int[] num = new int[n];
@@ -16,22 +15,35 @@ public class First_unique_element {
 			num[i] = scn.nextInt();
 		}
 		solve(num, k);
-
 	}
 
 	public static void solve(int[] arr, int k) {
-		HashMap<Integer, Integer> hmap = new HashMap<>();
+
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+
+		boolean flag = false;
 		for (int val : arr) {
 
-			hmap.put(val, hmap.containsKey(val) ? hmap.get(val) + 1 : 1);
+			if (map.containsKey(val)) {
+				map.put(val, map.get(val) + 1);
+
+			} else {
+				map.put(val, 1);
+			}
 
 		}
 
 		for (int val : arr) {
-			if (hmap.get(val) == 1) {
-				System.out.println(val);
-				return;
+			if (map.get(val) == k) {
+				System.out.print(val);
+				flag = true;
+				break;
 			}
 		}
+
+		if (!flag) {
+			System.out.print(-1);
+		}
+
 	}
 }
