@@ -14,11 +14,11 @@ public class Tom_String {
 
 		for (String s : temp) {
 			for (int i = 0; i < s.length(); i++) {
-				sum += i + (map.get(s.charAt(i)) + 1);
+				sum += i + (map.get(s.charAt(i)));
 			}
 		}
 
-		return 2 * sum;
+		return temp.length * sum;
 
 	}
 

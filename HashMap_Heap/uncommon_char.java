@@ -6,34 +6,22 @@ public class uncommon_char {
 
 	public static void uncommon(String str1, String str2) {
 
-		HashMap<Character, Boolean> map = new HashMap<>();
-		HashSet<Character> set = new HashSet<>();
+		int arr1[] = new int[26];
+		int arr2[] = new int[26];
 
 		for (int i = 0; i < str1.length(); i++) {
-			char ch = str1.charAt(i);
-			map.put(ch, true);
-			set.add(ch);
+			arr1[(int) str1.charAt(i) - 'a']++;
 		}
-
 		for (int i = 0; i < str2.length(); i++) {
-			char ch = str2.charAt(i);
+			arr2[(int) str2.charAt(i) - 'a']++;
+		}
+		for (int i = 0; i < arr1.length; i++) {
+			if (arr1[i] == 0 && arr2[i] > 0 || arr1[i] > 0 && arr2[i] == 0) {
+				System.out.print((char) (i + 'a'));
 
-			if (map.containsKey(ch)) {
-				map.put(ch, false);
-				set.remove(ch);
-			} else if (map.containsKey(ch) == false) {
-				map.put(ch, true);
-				set.add(ch);
 			}
 		}
-
-		Object[] ans = set.toArray();
-
-		Arrays.sort(ans);
-
-		for (int i = 0; i < ans.length; i++) {
-			System.out.print(ans[i]);
-		}
+		System.out.println();
 	}
 
 	// Don't make any changes here
