@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class Smallest_distinct_window {
 
 	public static int minLength(String s) {
-
 		HashSet<Character> set = new HashSet<>();
 
 		for (int i = 0; i < s.length(); i++) {
@@ -16,34 +15,12 @@ public class Smallest_distinct_window {
 
 		HashMap<Character, Integer> map = new HashMap<>();
 
-		int i = 1;
+		int i = -1;
 		int j = 0;
-
-		int min = Integer.MAX_VALUE;
-
-		while (j < s.length() && i < s.length()) {
-
-			if (map.size() < set.size()) {
-				j++;
-				map.put(s.charAt(j - 1), map.containsKey(s.charAt(j - 1)) ? map.get(s.charAt(j - 1)) + 1 : 1);
-
-			} else if (map.size() == set.size()) {
-
-				min = Math.min(min, j - i + 1);
-				if (i < s.length()) {
-					if (map.get(s.charAt(i)) > 1) {
-						map.put(s.charAt(i), map.get(s.charAt(i)) - 1);
-					} else if (map.get(s.charAt(i)) == 1) {
-						map.remove(s.charAt(i));
-					}
-					i++;
-				}
-
-			}
+		while (j > s.length()) {
 
 		}
 
-		return min;
 	}
 
 	public static int minLengthOG(String s) {
