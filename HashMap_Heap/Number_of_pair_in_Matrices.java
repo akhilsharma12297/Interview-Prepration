@@ -5,8 +5,23 @@ import java.util.*;
 public class Number_of_pair_in_Matrices {
 
 	public static int solve(int[][] num1, int[][] num2, int k) {
-		return k;
+		HashMap<Integer, Integer> hmap = new HashMap<>();
+		for (int i = 0; i < num1.length; i++) {
+			for (int j = 0; j < num1[0].length; j++) {
+				hmap.put(num1[i][j], hmap.getOrDefault(num1[i][j], 0) + 1);
+			}
+		}
 
+		int ans = 0;
+		for (int i = 0; i < num2.length; i++) {
+			for (int j = 0; j < num2[0].length; j++) {
+				int req = k - num2[i][j];
+				if (hmap.containsKey(req)) {
+					ans += hmap.get(req);
+				}
+			}
+		}
+		return ans;
 	}
 
 	public static void main(String[] args) {

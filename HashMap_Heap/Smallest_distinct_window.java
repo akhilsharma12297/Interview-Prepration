@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Scanner;
 
+import com.sun.xml.internal.bind.v2.runtime.MarshallerImpl;
+
 public class Smallest_distinct_window {
 
 	public static int minLength(String s) {
@@ -17,9 +19,31 @@ public class Smallest_distinct_window {
 
 		int i = -1;
 		int j = 0;
-		while (j > s.length()) {
 
+		int minLength = Integer.MAX_VALUE;
+
+		while (j < s.length()) {
+
+			while (j < s.length() && map.size() < set.size()) {
+				map.put(s.charAt(j), map.containsKey(s.charAt(j)) ? map.get(s.charAt(j)) + 1 : 1);
+				j++;
+			}
+
+			minLength = Math.min(minLength, j - i + 1);
+
+			while (map.size() != set.size() - 1) {
+				i++;
+				if (map.get(s.charAt(i)) == 1) {
+					map.remove(s.charAt(i));
+				} else {
+					map.put(s.charAt(i), map.get(s.charAt(i)) - 1);
+				}
+			}
 		}
+		
+		minLength = Math.min(minLength, j - i);
+
+		return minLength;
 
 	}
 
