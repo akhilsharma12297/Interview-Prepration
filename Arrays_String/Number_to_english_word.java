@@ -10,34 +10,56 @@ public class Number_to_english_word {
 		System.out.println(numberToWords(num));
 	}
 
-	static String[] words = { "" + "thousand" + "million" + "billion" };
-	static String[] teens = { "twenty" + "thirty" + "fourty" + "fifty" + "sixty" + "seventy" + "eighty" + "ninty" };
-	static String[] unit = { "one" + "two" + "three" + "four" + "five" + " six" + "seven" + "eight" + "nine" };
+	private final static String[] LessThanTwenty = { "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
+			"Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen",
+			"Nineteen" };
+	private final static String[] Tens = { "", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty",
+			"Ninety" };
+	private final static String[] Big = { "", "Thousand", "Million", "Billion" };
 
 	public static String numberToWords(int num) {
 
-		ArrayList<Integer> arr = new ArrayList<Integer>();
-
-		while (num > 0) {
-			arr.add(num % 10);
-			num = num / 10;
-		}
-
-		Collections.reverse(arr);
-		func(arr, 0, arr.size(), 0);
-		return null;
+		return func(num);
 	}
 
-	private static void func(List<Integer> arr, int i, int j, int idx) {
+	private static String func(int num) {
 
-		if (arr.size() == 3) {
+		if (num == 0)
+			return "Zero";
+
+		StringBuilder ans = new StringBuilder();
+		int idx = 0;
+
+		while (num > 0) {
+
+			if (num % 1000 != 0) {
+				StringBuilder temp = new StringBuilder();
+				func2(temp, num % 1000);
+				ans.insert(0, temp.append(Big[idx])).append(" ");
+			}
+			idx++;
+			num /= 1000;
 
 		}
+		return ans.toString().trim();
 
-		List<Integer> narr = arr.subList(i, j - 3);
+	}
 
-		func(narr, i, j - 3, idx + 1);
-
+	private static void func2(StringBuilder ans, int n) {
+		if (n == 0) {
+			return;
+		}
+		if (n < 20) {
+			ans.append(LessThanTwenty[n]).append(" ");
+			return;
+		}
+		if (n < 100) {
+			ans.append(Tens[n / 10]).append(" ");
+			func2(ans, n % 10);
+		} else {
+			ans.append(LessThanTwenty[n / 100]).append(" Hundred ");
+			func2(ans, n % 100);
+		}
 	}
 
 }
