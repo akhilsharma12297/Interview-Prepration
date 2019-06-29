@@ -1,6 +1,7 @@
 package HashMap_Heap;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class All_anagram_in_a_String {
@@ -55,6 +56,29 @@ public class All_anagram_in_a_String {
 
 	}
 
+	public static List<Integer> findAnagramss(String s, String p) {
+		int[] map = new int[256];
+		for (int i = 0; i < p.length(); i++) {
+			map[p.charAt(i)]++;
+		}
+		List<Integer> ans = new ArrayList<>();
+		int left = 0;
+		int right = 0;
+		while (right < s.length()) {
+			if (map[s.charAt(right)] > 0) {
+				map[s.charAt(right)]--;
+				right++;
+				if (right - left == p.length()) {
+					ans.add(left);
+				}
+			} else {
+				map[s.charAt(left)]++;
+				left++;
+			}
+		}
+		return ans;
+
+	}
 	// -----------------------------------------------------
 
 	public static void main(String[] args) {

@@ -2,7 +2,7 @@ package HashMap_Heap;
 
 import java.util.*;
 
-public class Anagrams {
+public class Group_Anagrams {
 
 	public static List<List<String>> groupAnagrams(String[] strs) {
 

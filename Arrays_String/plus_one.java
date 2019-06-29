@@ -5,8 +5,7 @@ import java.util.Scanner;
 public class plus_one {
 
 	public static int[] plusOne(int[] digits) {
-		
-		
+
 		return digits;
 	}
 
