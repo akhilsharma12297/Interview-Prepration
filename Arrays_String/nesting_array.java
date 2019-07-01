@@ -7,7 +7,7 @@ public class nesting_array {
 
 	public static void main(String[] args) {
 
-		int[] arr = { 4, 3, 3, 4, 1, 0, 5 };
+		int[] arr = { 5, 4, 0, 3, 1, 6, 2 };
 		func(arr);
 	}
 
