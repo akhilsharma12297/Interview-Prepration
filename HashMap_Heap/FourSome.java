@@ -18,6 +18,7 @@ public class FourSome {
 			return list;
 
 		Arrays.sort(nums);
+
 		for (int i = 0; i < nums.length; i++) {
 			if (i > 0 && nums[i] == nums[i - 1]) {
 				continue;
@@ -30,7 +31,9 @@ public class FourSome {
 
 				int l = j + 1;
 				int r = nums.length - 1;
+
 				int sumReq = target - (nums[i] + nums[j]);
+
 				while (l < r) {
 					int sum = nums[l] + nums[r];
 					if (sum < sumReq) {
