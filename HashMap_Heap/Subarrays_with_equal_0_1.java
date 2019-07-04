@@ -33,9 +33,7 @@ public class Subarrays_with_equal_0_1 {
 		return ctr;
 	}
 
-	// Don't make any changes here.
 	public static void main(String[] args) {
-		// code
 		Scanner in = new Scanner(System.in);
 		int n = in.nextInt();
 		int[] a = new int[n];
