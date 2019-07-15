@@ -17,7 +17,7 @@ public class K_Closest_Point {
 		}
 
 		public int compareTo(Pair o) {
-			return (this.x * this.x) + (this.y * this.y);
+			return (o.x * o.x) + (o.y + o.y) - (this.x * this.x) + (this.y * this.y);
 		}
 	}
 
