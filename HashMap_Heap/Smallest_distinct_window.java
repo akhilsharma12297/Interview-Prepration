@@ -40,7 +40,7 @@ public class Smallest_distinct_window {
 				}
 			}
 		}
-		
+
 		minLength = Math.min(minLength, j - i);
 
 		return minLength;
@@ -83,7 +83,6 @@ public class Smallest_distinct_window {
 
 	// Dont make changes here
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println(minLength(sc.next()));
+		System.out.println(minLength("aabcbcdbca"));
 	}
 }

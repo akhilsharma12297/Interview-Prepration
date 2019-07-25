@@ -5,9 +5,7 @@ import java.util.*;
 public class Number_to_english_word {
 
 	public static void main(String[] args) {
-		Scanner scn = new Scanner(System.in);
-		int num = scn.nextInt();
-		System.out.println(numberToWords(num));
+		System.out.println(numberToWords(57));
 	}
 
 	private final static String[] LessThanTwenty = { "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
