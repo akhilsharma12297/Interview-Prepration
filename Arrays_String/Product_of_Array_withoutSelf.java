@@ -8,7 +8,7 @@ public class Product_of_Array_withoutSelf {
 
 		int arr[] = { 4, 3, 1, 2 };
 
-		productExceptSelfBEST(arr);
+		System.out.println(productExceptSelfBEST(arr));
 
 	}
 
@@ -46,19 +46,32 @@ public class Product_of_Array_withoutSelf {
 
 	public static int[] productExceptSelfBEST(int[] nums) {
 		int[] output = new int[nums.length];
+
 		Arrays.fill(output, 1);
+
 		int left = 1;
+
 		int right = 1;
+
 		for (int i = 0; i < nums.length; i++) {
+
 			output[i] *= left;
+
 			left *= nums[i];
 		}
 
 		for (int i = nums.length - 1; i >= 0; i--) {
+
 			output[i] *= right;
+
 			right *= nums[i];
 		}
 
+		for (int val : output) {
+			System.out.print(val + " ");
+		}
+
+		System.out.println();
 		return output;
 	}
 
