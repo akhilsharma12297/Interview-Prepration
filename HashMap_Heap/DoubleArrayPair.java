@@ -1,14 +1,13 @@
 package HashMap_Heap;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public class DoubleArrayPair {
 
 	public static void main(String[] args) {
 
 		int[] arr = { -12, 78, 84, 156, 42, -6, -100, -200, 78, 39 };
-		System.out.println(func(arr));
+		System.out.println(func2(arr));
 	}
 
 	public static boolean func(int[] arr) {
@@ -105,4 +104,29 @@ public class DoubleArrayPair {
 
 	}
 
+	public static boolean func2(int[] arr) {
+		Map<Integer, Integer> count = new TreeMap<>();
+
+		for (int val : arr) {
+			count.put(val, count.getOrDefault(val, 0) + 1);
+		}
+
+		System.out.println(count);
+		for (int val : count.keySet()) {
+
+			if (count.get(val) != 0) {
+				{
+					int want = val < 0 ? val / 2 : val * 2;
+
+					if (val < 0 && val % 2 != 0 || count.get(val) > count.getOrDefault(want, 0)) {
+						return false;
+					}
+					count.put(want, count.get(want) - count.get(val));
+				}
+			}
+		}
+
+		System.out.println(count);
+		return true;
+	}
 }

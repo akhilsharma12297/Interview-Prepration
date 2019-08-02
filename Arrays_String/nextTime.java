@@ -8,8 +8,11 @@ public class nextTime {
 
 		TreeSet<Integer> set = new TreeSet<>();
 		int[] arr = new int[t.length()];
+		
 		int min = Integer.MAX_VALUE;
+		
 		arr[2] = -1;
+		
 		for (int i = 0; i < t.length(); i++) {
 
 			char ch = t.charAt(i);

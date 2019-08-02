@@ -31,7 +31,6 @@ public class Sum_PairDivibilty {
 					if (map.get(val) % 2 != 0) {
 						return false;
 					}
-
 				}
 
 				if (map.containsKey(k - val)) {
