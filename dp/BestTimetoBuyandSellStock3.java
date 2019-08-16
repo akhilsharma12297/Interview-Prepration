@@ -1,3 +1,4 @@
+package dp;
 
 public class BestTimetoBuyandSellStock3 {
 
@@ -16,10 +17,9 @@ public class BestTimetoBuyandSellStock3 {
 			profit[i] = Math.max(profit[i + 1], max_price - price[i]);
 		}
 
-		
 //		  maximum profit with two transactions allowed 
 //		  After this loop,profit[n-1] contains the result
-		 
+
 		int min_price = price[0];
 		for (int i = 1; i < n; i++) {
 			// min_price is minimum price in price[0..i]
