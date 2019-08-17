@@ -1,3 +1,4 @@
+package dp;
 
 public class BuyandSellStock4 {
 
@@ -20,7 +21,7 @@ public class BuyandSellStock4 {
 
 		// k represents transaction number
 		for (int i = 1; i <= k; i++) {
-			
+
 			for (int j = 1; j < n; j++) {
 				int max_so_far = 0;
 
